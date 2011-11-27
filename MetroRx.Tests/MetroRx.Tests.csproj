@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>25403a0b-4489-4f21-9c0a-de98366f7e82</ProjectGuid>
+    <ProjectGuid>{EF27120B-847D-4373-9F3F-019123FB589D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MetroRx.Tests</RootNamespace>
-    <AssemblyName>MetroRx.Tests</AssemblyName>    
+    <AssemblyName>MetroRx.Tests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
@@ -34,35 +34,57 @@
     <AppXPackage>True</AppXPackage>
   </PropertyGroup>
   <ItemGroup>
-     <!--A reference to the entire .Net Framework and Windows SDK are automatically included--> 
+    <!--A reference to the entire .Net Framework and Windows SDK are automatically included-->
     <SDKReference Include="MSTestFramework, Version=11.0" />
     <SDKReference Include="TestPlatform, Version=11.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Helpers.cs" />
+    <Compile Include="NotifyPropertyChangedMixinTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReactiveCollectionTest.cs" />
+    <Compile Include="ReactiveCommandTest.cs" />
   </ItemGroup>
- <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest" /> 
- </ItemGroup>
- <ItemGroup>
-	<Content Include="Images\UnitTestLogo.png">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-                <Visible>false</Visible>
-	</Content>
-	<Content Include="Images\UnitTestSmallLogo.png">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-                <Visible>false</Visible>
-	</Content>
-	<Content Include="Images\UnitTestSplashScreen.png">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-                <Visible>false</Visible>
-	</Content>
-	<Content Include="Images\UnitTestStoreLogo.png">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-                <Visible>false</Visible>
-	</Content>
-  </ItemGroup> 
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\UnitTestLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="Images\UnitTestSmallLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="Images\UnitTestSplashScreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="Images\UnitTestStoreLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MetroRx\MetroRx.csproj">
+      <Project>{f054d5c4-7825-4008-afad-d150b3d49852}</Project>
+      <Name>MetroRx</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.Win8">
+      <HintPath>..\ext\GalaSoft.MvvmLight.Extras.Win8.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Win8">
+      <HintPath>..\ext\GalaSoft.MvvmLight.Win8.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Reactive.Testing">
+      <HintPath>..\ext\Microsoft.Reactive.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive, Version=1.1.11011.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Reactive.WindowsRuntime, Version=1.1.11011.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v1.0\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
