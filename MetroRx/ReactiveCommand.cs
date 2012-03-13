@@ -6,12 +6,8 @@ using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading;
-
-using GalaSoft.MvvmLight.Command;
+using System.Windows.Input;
 using MetroRx;
-using Windows.UI.Xaml.Input;
-
-using XamlEventHandler = Windows.UI.Xaml.EventHandler;
 
 namespace MetroRx.Xaml
 {
@@ -63,7 +59,7 @@ namespace MetroRx.Xaml
             return _latestCanExecute;
         }
 
-        public event XamlEventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged;
 
         ScheduledSubject<object> _executeSubject;
         IDisposable _inner;
@@ -127,10 +123,10 @@ namespace MetroRx.Xaml
         /// <param name="This"></param>
         /// <param name="scheduler"></param>
         /// <returns></returns>
-        public static ReactiveCommand AsProxyCommand(this RelayCommand This, IScheduler scheduler = null)
+        public static ReactiveCommand AsProxyCommand(this ICommand This, IScheduler scheduler = null)
         {
             var ce = Observable.Create<Unit>(subj => {
-                XamlEventHandler eh = (o, e) => subj.OnNext(Unit.Default);
+                EventHandler eh = (o, e) => subj.OnNext(Unit.Default);
                 This.CanExecuteChanged += eh;
                 return () => This.CanExecuteChanged -= eh;
             });

@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Diagnostics.Contracts;
 
 using DiagDbg = System.Diagnostics.Debug;
+using System.Threading.Tasks;
 
 namespace MetroRx
 {
@@ -204,7 +205,7 @@ namespace MetroRx
 
             buffer = new StringBuilder(128);
             buffer.Append(now.ToString());
-            buffer.AppendFormat(" [{0}] ", Thread.CurrentThread.ManagedThreadId);
+            buffer.AppendFormat(" [{0}] ", Task.CurrentId);
             buffer.Append(prefix);
             buffer.Append(": ");
             _prefixBuffer = buffer.ToString();

@@ -9,9 +9,7 @@ using System.Reactive.Subjects;
 using System.Reflection;
 using System.Threading;
 using System.Diagnostics;
-using System.Reactive.WindowsRuntime.Concurrency;
 
-using WinRTThreadPoolScheduler = System.Reactive.WindowsRuntime.Concurrency.ThreadPoolScheduler;
 using Windows.ApplicationModel;
 using Windows.UI.Core;
 using System.Runtime.InteropServices;
@@ -57,10 +55,10 @@ namespace MetroRx
                 LoggerFactory = (prefix) => new StdErrLogger(prefix) { CurrentLogLevel = LogLevel.Info };
             } else {
                 Debug.WriteLine("Initializing to normal mode");
-                DeferredScheduler = CoreDispatcherScheduler.Instance;
+                DeferredScheduler = CoreDispatcherScheduler.Default;
             }
 
-            TaskpoolScheduler = WinRTThreadPoolScheduler.Instance;
+            TaskpoolScheduler = TaskPoolScheduler.Default;
         }
 
         [ThreadStatic] static IScheduler _UnitTestDeferredScheduler;
@@ -132,7 +130,7 @@ namespace MetroRx
         {
             bool inRunner = true;
             try {
-                CoreDispatcherScheduler.Instance.Dispatcher.Invoke(CoreDispatcherPriority.High, (o, e) => inRunner = false, null, null);
+                CoreDispatcherScheduler.Default.Dispatcher.Invoke(CoreDispatcherPriority.High, (o, e) => inRunner = false, null, null);
             } catch (COMException) { }
 
             return inRunner;

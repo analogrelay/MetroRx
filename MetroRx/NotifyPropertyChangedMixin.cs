@@ -8,7 +8,7 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Reflection;
 using System.Text;
-using Windows.UI.Xaml.Data;
+using System.ComponentModel;
 
 namespace MetroRx
 {
